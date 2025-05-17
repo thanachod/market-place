@@ -1,0 +1,12 @@
+CREATE SCHEMA IF NOT EXIST store;
+
+DROP TABLE IF EXIST customers;
+
+CREATE TABLE IF NOT EXIST customers (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100) UNIQUE NOT NULL,
+    age INT DEFAULT 0,
+    password TEXT NOT NULL, 
+)
