@@ -5,7 +5,7 @@ import { CartContext } from '../context/CartContext';
 export const ItemCard = ({ item }) => {
 
   const navigate = useNavigate();
-  const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
+  const { cartItems, addToCart, removeFromCart, decreaseQuantity } = useContext(CartContext);
   const [inCart, setInCart] = useState(undefined);
 
   useEffect(() => {
@@ -52,10 +52,11 @@ export const ItemCard = ({ item }) => {
               >+</button>
               <span>{inCart === undefined  ? 0 : inCart.inCart}</span>
               <button className='btn btn-light'
-                onClick={() => removeFromCart(item)}
+                onClick={() => decreaseQuantity(item)}
               >-</button>
               </div>
-              <button className='btn btn-danger'>Remove</button>
+              <button className='btn btn-danger'
+              onClick={() => removeFromCart(item)}>Remove</button>
             </div>
           )}
 

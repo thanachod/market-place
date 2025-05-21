@@ -8,7 +8,7 @@ import { UserContext } from '../context/UserContext'
 import Cookies from 'universal-cookie'
 
 export const Cart = () => {
-  const { cartItems, setCartItems, addToCart, removeFromCart, getCartTotal } = useContext(CartContext)
+  const { cartItems, setCartItems, addToCart, removeFromCart, decreaseQuantity, getCartTotal } = useContext(CartContext)
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(UserContext)
   const cookies = new Cookies();
@@ -109,12 +109,14 @@ export const Cart = () => {
                       >+</button>
                       {item.inCart}
                       <button className='btn btn-light px-3 mx-3'
-                        onClick={() => removeFromCart(item)}
+                        onClick={() => decreaseQuantity(item)}
                       >-</button>
                     </span>
                     <span>${item.price}</span>
                     <span>${item.inCart > 0 ? (item.inCart * item.price).toFixed(2) : item.price.toFixed(2)}</span>
-                    <span><button className='btn btn-danger'>Remove</button></span>
+                    <span><button className='btn btn-danger'
+                     onClick={() => removeFromCart(item)}
+                    >Remove</button></span>
                   </div>
                 ))
 
