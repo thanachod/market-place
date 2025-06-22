@@ -409,7 +409,55 @@
 
 .item-detail {
 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
   .detail{
+    
+    display: flex;
+    gap: 20px;
+
+    .image {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+      
+
+      img {
+        border-radius: 5px;
+      }
+    }
+
+    .body{
+      display: flex;
+      flex-direction: column;
+      .name{
+        font-size: 3rem;
+      }
+
+      .category-tag{
+        display: flex;
+        gap: 10px;
+        .category{
+        text-align: start;
+      }
+      }
+      
+
+      .button {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+    
+
+      
+    }
+    display: flex;
     padding: 10px;
 
     border-radius: 10px;

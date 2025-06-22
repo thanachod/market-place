@@ -4,7 +4,10 @@ const multer = require('multer');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const authMiddleware = require('../middlewares/authMiddleware');
+
 const db = require('../database/mysql_connection');
+const verifyToken = require('../middlewares/verifyTokenMiddleware');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -16,6 +19,9 @@ const storage = multer.diskStorage({
 
 })
 const upload = multer({ storage })
+
+router.use(authMiddleware);
+router.use(verifyToken);
 
 router.get('/get-all', async (req, res) => {
     try{
@@ -186,6 +192,23 @@ router.post('/auth', async (req, res) => {
     }
 
 });
+
+
+// router.post('/', authMiddleware, (req, res, next) => {
+//     return res.status(200).json({
+//         status: "success",
+//         data: {},
+
+//     })
+// });
+
+// router.post('/', verifyToken, (req, res, next) => {
+//     return res.status(200).json({
+//         status: "success",
+//         data: {},
+
+//     })
+// });
 
 router.post('/validate', async (req, res) => {
     const { userToken } = req.body;

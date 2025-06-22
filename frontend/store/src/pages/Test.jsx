@@ -5,7 +5,7 @@ import axios from 'axios'
 export const Test = () => {
 
     useEffect(() => {
-        axios.get('/users/test');
+        axios.get('/test');
     }, [])
 
   return (

@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-
+const itemController = require('../controllers/itemController');
+const { query, validationResult, body, checkSchema } = require('express-validator');
 const db = require('../database/mysql_connection');
+
+//validationSchema
+// const { createUserValidationSchema } = require('../utils/validationSchemas.mjs');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -120,7 +124,7 @@ router.post('/', (req, res) => {
         return res.status(500).json({
             status: "error",
             message: `${error.message}`
-        })
+        });
     }
 });
 
@@ -163,6 +167,24 @@ router.get('/detail/:id', (req, res) => {
     }
 
 });
+
+// router.get('/search', query('item_name'), (req, res) => {
+    
+// })
+
+
+// need to work in module
+// router.post("/item-sale", 
+//     checkSchema(createUserValidationSchema), (req, res) => {
+//     const result = validationResult(req);
+//     console.log(result);
+    
+// });
+// router.get('/', itemController.getItems);
+// router.post('/', itemController.getItemsFiltered);
+// router.get('/detail/:id', itemController.getProductDetail);
+// router.post('/add-item', itemController.addItem);
+// router.put('/:id', itemController.updateItem);
 
 router.post('/add-item', upload.array('image'), (req, res) => {
     var sql = "INSERT INTO items\
